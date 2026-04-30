@@ -497,7 +497,7 @@ export default function Home() {
         {/* ── AVANT / APRÈS ── */}
         <section style={{ paddingTop: 88, paddingBottom: 88, background: T.ink, color: T.off }} className="section-px">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
+            <div className="reveal" style={{ textAlign: "center", marginBottom: 56 }}>
               <Caption style={{ color: T.gold, marginBottom: 16, display: "block" }}>Notre expertise</Caption>
               <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "-0.03em", lineHeight: 1.1, margin: 0 }}>
                 Nous rendons votre projet<br />
@@ -505,50 +505,13 @@ export default function Home() {
               </h2>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
-
-              {/* AVANT */}
-              <div className="reveal stagger-1" style={{ border: `1px solid ${T.graphite}`, overflow: "hidden" }}>
-                <div style={{ padding: "14px 24px", background: T.graphite }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, letterSpacing: "0.15em", color: T.stone }}>AVANT</span>
-                </div>
-                <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-                  <Image
-                    src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=700&q=60"
-                    fill style={{ objectFit: "cover", filter: "grayscale(100%) brightness(0.55)" }}
-                    alt="Avant intervention E-Solution" />
-                </div>
-                <div style={{ padding: "28px 28px 32px", display: "flex", flexDirection: "column", gap: 18 }}>
-                  {["Présence digitale faible", "Photos simples", "Annonce peu claire", "Peu de demandes"].map(item => (
-                    <div key={item} style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                      <span style={{ color: T.stone, fontSize: 15, flexShrink: 0 }} aria-hidden="true">✕</span>
-                      <span style={{ fontSize: 14, color: T.stone, lineHeight: 1.3 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+              <div className="reveal stagger-1" style={{ position: "relative" }}>
+                <Image src="/avant.jpg" alt="Avant — sans E-Solution" width={900} height={1125} style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
-
-              {/* APRÈS */}
-              <div className="reveal stagger-2" style={{ border: `2px solid ${T.gold}`, overflow: "hidden" }}>
-                <div style={{ padding: "14px 24px", background: T.gold }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, letterSpacing: "0.15em", color: T.ink }}>APRÈS</span>
-                </div>
-                <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-                  <Image
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80"
-                    fill style={{ objectFit: "cover" }}
-                    alt="Après intervention E-Solution — résidence premium" />
-                </div>
-                <div style={{ padding: "28px 28px 32px", display: "flex", flexDirection: "column", gap: 18 }}>
-                  {["Visibilité structurée", "Branding du projet", "Contenu premium", "Meta Ads ciblées", "Leads qualifiés"].map(item => (
-                    <div key={item} style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                      <span style={{ color: T.gold, fontSize: 15, flexShrink: 0 }} aria-hidden="true">✓</span>
-                      <span style={{ fontSize: 14, color: T.off, lineHeight: 1.3 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="reveal stagger-2" style={{ position: "relative" }}>
+                <Image src="/apres.jpg" alt="Après — avec E-Solution" width={900} height={1125} style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
-
             </div>
           </div>
         </section>
