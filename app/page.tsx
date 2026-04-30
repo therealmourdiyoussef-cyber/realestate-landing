@@ -405,14 +405,6 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="reveal" style={{ marginTop: 48, background: T.ink, color: T.off, padding: "24px 32px", display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
-              {([["📈", "+ visibilité"], ["🛡", "+ confiance"], ["👥", "+ leads qualifiés"], ["🛒", "+ ventes"]] as [string, string][]).map(([icon, label]) => (
-                <div key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <span style={{ fontSize: 20 }} aria-hidden="true">{icon}</span>
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, letterSpacing: "0.03em", color: T.gold }}>{label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -451,15 +443,6 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="reveal" style={{ marginTop: 2, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", border: `1px solid ${T.graphite}` }}>
-              {([["128K", "portée"], ["4,2K", "clics"], ["362", "leads"], ["63", "visites projet"]] as [string, string][]).map(([val, lbl], i) => (
-                <div key={lbl} style={{ padding: "28px 20px", borderRight: i < 3 ? `1px solid ${T.graphite}` : "none", textAlign: "center" }}>
-                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.04em", color: T.gold }}>{val}</div>
-                  <div style={{ fontSize: 12, color: T.stone, marginTop: 6, letterSpacing: "0.08em", textTransform: "uppercase" }}>{lbl}</div>
                 </div>
               ))}
             </div>
