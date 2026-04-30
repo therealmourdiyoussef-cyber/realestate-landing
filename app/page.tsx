@@ -61,6 +61,38 @@ function Btn({ kind = "primary", children, onClick, type = "button", disabled }:
   );
 }
 
+function CounterStat({ end, decimals = 0, suffix, label }: { end: number; decimals?: number; suffix: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      obs.disconnect();
+      const dur = 1800, t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setVal(parseFloat((eased * end).toFixed(decimals)));
+        if (p < 1) requestAnimationFrame(tick);
+        else setVal(end);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.5 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [end, decimals]);
+  return (
+    <div ref={ref} style={{ padding: "28px 16px", textAlign: "center", border: `1px solid ${T.graphite}`, borderLeft: "none" }}>
+      <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(28px, 3vw, 44px)", color: T.gold, letterSpacing: "-0.04em", lineHeight: 1 }}>
+        {decimals > 0 ? val.toFixed(decimals) : Math.floor(val)}{suffix}
+      </div>
+      <div style={{ fontSize: 11, color: T.stone, marginTop: 8, letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</div>
+    </div>
+  );
+}
+
 function StatBlock({ value, suffix, label, sub }: { value: string; suffix: string; label: string; sub: string }) {
   return (
     <div style={{ borderTop: `1px solid ${T.gold}`, paddingTop: 14 }}>
@@ -99,8 +131,28 @@ export default function Home() {
   const [form, setForm]             = useState({ name: "", phone: "", city: "", project: "" });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const faqRefs                     = useRef<(HTMLDivElement | null)[]>([]);
+  const leadsRef                    = useRef<HTMLElement>(null);
+  const [leadsVisible, setLeadsVisible] = useState(false);
+  const [activeStep, setActiveStep]     = useState(0);
 
   useReveal();
+
+  useEffect(() => {
+    const el = leadsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setLeadsVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!leadsVisible) return;
+    const id = setInterval(() => setActiveStep(s => (s + 1) % 5), 1800);
+    return () => clearInterval(id);
+  }, [leadsVisible]);
 
   const handleScroll = useCallback(() => setScrolled(window.scrollY > 30), []);
   useEffect(() => {
@@ -409,15 +461,84 @@ export default function Home() {
         </section>
 
         {/* ── LEADS IMMOBILIERS ── */}
-        <section className="section-px" style={{ paddingTop: 88, paddingBottom: 88, background: T.ink }}>
+        <section ref={leadsRef} className="section-px" style={{ paddingTop: 88, paddingBottom: 88, background: T.ink, color: T.off }}>
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            {/* Desktop: horizontal image */}
-            <div className="reveal leads-desktop">
-              <Image src="/leads-desktop.jpg" alt="Leads Immobiliers — système en 5 étapes" width={1920} height={800} style={{ width: "100%", height: "auto", display: "block" }} />
+
+            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(48px, 7vw, 100px)", letterSpacing: "-0.04em", lineHeight: 0.93, margin: "0 0 24px" }}>
+                LEADS<br />IMMOBILIERS
+              </h2>
+              <p style={{ fontSize: 16, color: T.stone, fontStyle: "italic", fontFamily: "var(--font-body)", lineHeight: 1.65 }}>
+                Le système qui transforme l&apos;attention en{" "}
+                <span style={{ color: T.gold, fontStyle: "normal", fontWeight: 600 }}>demandes qualifiées.</span>
+              </p>
             </div>
-            {/* Mobile: vertical image */}
-            <div className="reveal leads-mobile">
-              <Image src="/leads-mobile.jpg" alt="Leads Immobiliers — système en 5 étapes" width={900} height={1600} style={{ width: "100%", height: "auto", display: "block" }} />
+
+            {/* 5-step funnel */}
+            <div style={{ position: "relative" }}>
+              {/* Animated connector line — hidden on mobile via CSS */}
+              <div className="funnel-connector" style={{ position: "absolute", top: 18, left: "4%", right: "4%", height: 1, background: T.graphite, zIndex: 0, overflow: "hidden" }}>
+                <div style={{ height: "100%", background: `linear-gradient(to right, ${T.bronze}, ${T.gold})`, opacity: 0.5, width: leadsVisible ? "100%" : "0%", transition: "width 1.8s cubic-bezier(0.16,1,0.3,1)" }} />
+              </div>
+
+              <div className="funnel-grid">
+                {funnelSteps.map((s, i) => {
+                  const isActive = activeStep === i;
+                  return (
+                    <div key={s.num}
+                      className={`reveal stagger-${i + 1}`}
+                      style={{
+                        border: `1px solid ${isActive ? T.gold : T.graphite}`,
+                        borderLeft: i === 0 ? `1px solid ${isActive ? T.gold : T.graphite}` : "none",
+                        padding: "28px 20px",
+                        position: "relative", zIndex: 1,
+                        boxShadow: isActive ? `0 0 28px rgba(201,154,46,0.18), inset 0 0 40px rgba(201,154,46,0.04)` : "none",
+                        transition: "border-color 0.5s ease, box-shadow 0.5s ease",
+                      }}>
+                      <div style={{
+                        width: 36, height: 36, marginBottom: 20,
+                        background: isActive ? T.gold : "transparent",
+                        border: `1px solid ${isActive ? T.gold : T.graphite}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,
+                        color: isActive ? T.ink : T.stone,
+                        position: "relative", zIndex: 1,
+                        transition: "all 0.5s ease",
+                      }}>{s.num}</div>
+                      <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: isActive ? T.gold : T.off, lineHeight: 1.1, marginBottom: 6, transition: "color 0.5s ease" }}>{s.title}</h3>
+                      <p style={{ fontSize: 11, color: T.stone, lineHeight: 1.5, marginBottom: 18 }}>{s.sub}</p>
+                      <div style={{ height: 1, background: isActive ? T.gold : T.graphite, marginBottom: 16, opacity: 0.4, transition: "background 0.5s ease" }} />
+                      <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                        {s.items.map(item => (
+                          <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <span style={{ color: T.gold, fontSize: 8, flexShrink: 0 }} aria-hidden="true">◆</span>
+                            <span style={{ fontSize: 12, color: isActive ? T.off : T.stone, transition: "color 0.5s ease" }}>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {i < funnelSteps.length - 1 && (
+                        <div style={{ position: "absolute", right: -9, top: "50%", transform: "translateY(-50%)", color: isActive ? T.gold : T.graphite, fontSize: 18, zIndex: 2, transition: "color 0.5s ease" }} aria-hidden="true">›</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Animated counters */}
+            <div className="funnel-stats" style={{ borderLeft: `1px solid ${T.graphite}` }}>
+              <CounterStat end={128} suffix="K" label="portée" />
+              <CounterStat end={4.2} decimals={1} suffix="K" label="clics" />
+              <CounterStat end={362} suffix="" label="leads" />
+              <CounterStat end={63} suffix="" label="visites projet" />
+            </div>
+
+            <div className="reveal" style={{ marginTop: 48, textAlign: "center" }}>
+              <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 18, color: T.stone, lineHeight: 1.6 }}>
+                Une <span style={{ color: T.gold, fontStyle: "normal" }}>visibilité</span> structurée.{" "}
+                Un <span style={{ color: T.gold, fontStyle: "normal" }}>parcours</span> fluide.{" "}
+                Des <span style={{ color: T.gold, fontStyle: "normal" }}>résultats</span> mesurables.
+              </p>
             </div>
           </div>
         </section>
