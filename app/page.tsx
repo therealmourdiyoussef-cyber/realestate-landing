@@ -171,6 +171,23 @@ export default function Home() {
     { q: "Comment fonctionne l'audit gratuit ?",                 a: "Un échange de 30 minutes : on analyse votre présence, vos objectifs, et on vous remet un plan d'action concret — sans engagement." },
   ];
 
+  const systeme360 = [
+    { num: "01", title: "Branding du projet",    sub: "Nom, positionnement, identité.",                       checks: ["Nom & signature", "Positionnement unique", "Identité visuelle premium", "Univers de marque"] },
+    { num: "02", title: "Shooting premium",       sub: "Photos, vidéos, visite immersive.",                   checks: ["Photos professionnelles", "Vidéo cinématique", "Drone & plans aériens", "Visite virtuelle 360°"] },
+    { num: "03", title: "Contenu social media",   sub: "Feed, reels, storytelling.",                          checks: ["Calendrier éditorial", "Design haut de gamme", "Reels & séquences courtes", "Storytelling & émotions"] },
+    { num: "04", title: "Landing page",           sub: "Présentation claire, appel à l'action.",              checks: ["Design sur-mesure", "Informations clés", "Formulaire intelligent", "Conversion optimisée"] },
+    { num: "05", title: "Meta Ads ciblées",       sub: "Campagnes, retargeting, optimisation.",               checks: ["Audience qualifiée", "Campagnes performantes", "Retargeting intelligent", "Optimisation continue"] },
+    { num: "06", title: "Suivi des leads",        sub: "WhatsApp, CRM, relance commerciale.",                 checks: ["Collecte multicanale", "CRM & qualification", "Relances automatisées", "Suivi & closing"] },
+  ];
+
+  const funnelSteps = [
+    { num: "01", title: "Attraction",     sub: "contenu premium + Meta Ads",                    items: ["Contenu haut de gamme", "Campagnes ciblées", "Visibilité maximale"] },
+    { num: "02", title: "Engagement",     sub: "visuels, vidéo, copywriting",                   items: ["Visuels impactants", "Vidéo immersive", "Copywriting persuasif"] },
+    { num: "03", title: "Conversion",     sub: "landing page + formulaire + WhatsApp",           items: ["Landing page optimisée", "Formulaire simple", "WhatsApp instantané"] },
+    { num: "04", title: "Qualification",  sub: "tri des demandes, budget, besoin",               items: ["Analyse des critères", "Scoring intelligent", "Leads qualifiés"] },
+    { num: "05", title: "Relance",        sub: "suivi commercial et conversion en visite",       items: ["Suivi personnalisé", "Relances automatiques", "Conversion en visite"] },
+  ];
+
   const navLinks = ["Services", "Méthode", "Réalisations", "À propos", "Contact"];
 
   return (
@@ -341,6 +358,118 @@ export default function Home() {
                   <p style={{ marginTop: 10, fontSize: 13, color: T.stone, lineHeight: 1.6 }}>{d}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SYSTÈME 360° ── */}
+        <section style={{ paddingTop: 88, paddingBottom: 88, background: T.off }} className="section-px">
+          <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
+              <div style={{ color: T.gold, fontSize: 28, marginBottom: 16 }} aria-hidden="true">✦</div>
+              <Caption style={{ color: T.bronze, marginBottom: 14, display: "block" }}>03 · Système</Caption>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", lineHeight: 1, margin: "0 0 20px" }}>
+                SYSTÈME DE VISIBILITÉ 360°
+              </h2>
+              <p style={{ fontSize: 16, color: T.graphite, lineHeight: 1.65, maxWidth: 540, margin: "0 auto" }}>
+                Comment <span style={{ color: T.gold, fontWeight: 600 }}>E-Solution</span> construit la présence digitale d&apos;un promoteur.
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+              {systeme360.map((s, i) => (
+                <div key={s.num}
+                  className={`reveal stagger-${(i % 3) + 1}`}
+                  style={{ background: T.off, border: `1px solid ${T.sand}`, padding: "32px 28px", transition: "border-color 0.2s ease, box-shadow 0.2s ease" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = T.gold; e.currentTarget.style.boxShadow = `0 8px 32px rgba(201,154,46,0.1)`; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = T.sand; e.currentTarget.style.boxShadow = "none"; }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+                    <div style={{ width: 44, height: 44, background: T.gold, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ color: T.ink, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11 }}>{s.num}</span>
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, lineHeight: 1.15 }}>{s.title}</div>
+                      <div style={{ fontSize: 12, color: T.stone, marginTop: 3 }}>{s.sub}</div>
+                    </div>
+                  </div>
+                  <div style={{ height: 1, background: T.sand, marginBottom: 20 }} aria-hidden="true" />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    {s.checks.map(c => (
+                      <div key={c} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <span style={{ color: T.gold, fontSize: 13, flexShrink: 0 }} aria-hidden="true">✓</span>
+                        <span style={{ fontSize: 13, color: T.graphite }}>{c}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reveal" style={{ marginTop: 48, background: T.ink, color: T.off, padding: "24px 32px", display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
+              {([["📈", "+ visibilité"], ["🛡", "+ confiance"], ["👥", "+ leads qualifiés"], ["🛒", "+ ventes"]] as [string, string][]).map(([icon, label]) => (
+                <div key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ fontSize: 20 }} aria-hidden="true">{icon}</span>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, letterSpacing: "0.03em", color: T.gold }}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── LEADS IMMOBILIERS ── */}
+        <section style={{ paddingTop: 88, paddingBottom: 88, background: T.ink, color: T.off }} className="section-px">
+          <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(52px, 8vw, 108px)", letterSpacing: "-0.04em", lineHeight: 0.93, margin: "0 0 24px" }}>
+                LEADS<br />IMMOBILIERS
+              </h2>
+              <p style={{ fontSize: 16, color: T.stone, lineHeight: 1.65, fontStyle: "italic", fontFamily: "var(--font-body)" }}>
+                Le système qui transforme l&apos;attention en{" "}
+                <span style={{ color: T.gold, fontStyle: "normal", fontWeight: 600 }}>demandes qualifiées.</span>
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
+              {funnelSteps.map((s, i) => (
+                <div key={s.num}
+                  className={`reveal stagger-${i + 1}`}
+                  style={{ border: `1px solid ${T.graphite}`, borderRight: i < funnelSteps.length - 1 ? "none" : `1px solid ${T.graphite}`, padding: "28px 22px", position: "relative" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <span style={{ color: T.gold, fontFamily: "monospace", fontSize: 11, letterSpacing: "0.1em" }}>{s.num}</span>
+                    {i < funnelSteps.length - 1 && (
+                      <span style={{ color: T.graphite, fontSize: 18, lineHeight: 1 }} aria-hidden="true">→</span>
+                    )}
+                  </div>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 20, marginTop: 14, color: T.gold, lineHeight: 1.1 }}>{s.title}</h3>
+                  <p style={{ fontSize: 11, color: T.stone, marginTop: 6, lineHeight: 1.5, marginBottom: 20 }}>{s.sub}</p>
+                  <div style={{ height: 1, background: T.graphite, marginBottom: 16 }} aria-hidden="true" />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                    {s.items.map(item => (
+                      <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ color: T.gold, fontSize: 8, flexShrink: 0 }} aria-hidden="true">◆</span>
+                        <span style={{ fontSize: 12, color: T.stone }}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reveal" style={{ marginTop: 2, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", border: `1px solid ${T.graphite}` }}>
+              {([["128K", "portée"], ["4,2K", "clics"], ["362", "leads"], ["63", "visites projet"]] as [string, string][]).map(([val, lbl], i) => (
+                <div key={lbl} style={{ padding: "28px 20px", borderRight: i < 3 ? `1px solid ${T.graphite}` : "none", textAlign: "center" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.04em", color: T.gold }}>{val}</div>
+                  <div style={{ fontSize: 12, color: T.stone, marginTop: 6, letterSpacing: "0.08em", textTransform: "uppercase" }}>{lbl}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reveal" style={{ marginTop: 48, textAlign: "center" }}>
+              <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 18, color: T.stone, lineHeight: 1.6 }}>
+                Une <span style={{ color: T.gold, fontStyle: "normal" }}>visibilité</span> structurée.{" "}
+                Un <span style={{ color: T.gold, fontStyle: "normal" }}>parcours</span> fluide.{" "}
+                Des <span style={{ color: T.gold, fontStyle: "normal" }}>résultats</span> mesurables.
+              </p>
             </div>
           </div>
         </section>
