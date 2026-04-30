@@ -387,9 +387,9 @@ export default function Home() {
         </section>
 
         {/* ── SERVICES ── */}
-        <section id="services" style={{ background: T.ink, color: T.off, paddingTop: 80, paddingBottom: 80 }} className="section-px">
+        <section id="services" style={{ background: T.ink, color: T.off, paddingTop: 96, paddingBottom: 96 }} className="section-px">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40, flexWrap: "wrap", gap: 24 }}>
+            <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
               <div>
                 <Caption style={{ color: T.gold }}>02 · Services</Caption>
                 <h2 style={{ marginTop: 14, fontFamily: "var(--font-display)", fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, margin: "14px 0 0" }}>
@@ -398,16 +398,24 @@ export default function Home() {
               </div>
               <a href="#contact"><Btn kind="primary">Discuter de votre projet</Btn></a>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", border: `1px solid ${T.graphite}` }}>
+            {/* Editorial list — 2 columns of 4 rows */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(480px, 1fr))", borderTop: `1px solid ${T.graphite}` }}>
               {services.map(([n, t, d], i) => (
                 <div key={n}
-                  className={`reveal-scale stagger-${(i % 4) + 1}`}
-                  style={{ padding: 28, borderRight: `1px solid ${T.graphite}`, borderBottom: `1px solid ${T.graphite}`, minHeight: 200, transition: `opacity 0.55s cubic-bezier(0.16,1,0.3,1) ${(i % 4) * 60}ms, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${(i % 4) * 60}ms, background 0.2s ease` }}
-                  onMouseEnter={e => (e.currentTarget.style.background = T.graphite)}
-                  onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
-                  <div style={{ color: T.gold, fontFamily: "monospace", fontSize: 12 }} aria-hidden="true">{n}</div>
-                  <h3 style={{ marginTop: 20, fontFamily: "var(--font-display)", fontSize: 17, fontWeight: 600, lineHeight: 1.2 }}>{t}</h3>
-                  <p style={{ marginTop: 10, fontSize: 13, color: T.stone, lineHeight: 1.6 }}>{d}</p>
+                  className={`reveal stagger-${(i % 4) + 1}`}
+                  style={{
+                    display: "grid", gridTemplateColumns: "44px 1fr 20px", gap: "0 20px",
+                    padding: "22px 0", borderBottom: `1px solid ${T.graphite}`,
+                    paddingRight: i % 2 === 0 ? 40 : 0, paddingLeft: i % 2 === 1 ? 40 : 0,
+                    borderRight: i % 2 === 0 ? `1px solid ${T.graphite}` : "none",
+                    alignItems: "start", transition: "opacity 0.55s cubic-bezier(0.16,1,0.3,1)",
+                  }}>
+                  <span style={{ color: T.gold, fontFamily: "monospace", fontSize: 11, letterSpacing: "0.08em", paddingTop: 3 }}>{n}</span>
+                  <div>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: 16, fontWeight: 600, color: T.off, lineHeight: 1.2 }}>{t}</h3>
+                    <p style={{ marginTop: 6, fontSize: 13, color: T.stone, lineHeight: 1.55 }}>{d}</p>
+                  </div>
+                  <span style={{ color: T.graphite, fontSize: 14, paddingTop: 3 }} aria-hidden="true">→</span>
                 </div>
               ))}
             </div>
@@ -415,20 +423,25 @@ export default function Home() {
         </section>
 
         {/* ── SYSTÈME 360° ── */}
-        <section style={{ paddingTop: 88, paddingBottom: 88, background: T.off }} className="section-px">
-          <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
-              <div style={{ color: T.gold, fontSize: 28, marginBottom: 16 }} aria-hidden="true">✦</div>
+        <section style={{ paddingTop: 120, paddingBottom: 120, background: T.off }} className="section-px">
+          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }} className="layout-system360">
+            {/* Sticky left panel */}
+            <div className="reveal" style={{ position: "sticky", top: 96 }}>
+              <div style={{ color: T.gold, fontSize: 24, marginBottom: 12 }} aria-hidden="true">✦</div>
               <Caption style={{ color: T.bronze, marginBottom: 14, display: "block" }}>03 · Système</Caption>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", lineHeight: 1, margin: "0 0 20px" }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-0.03em", lineHeight: 1.05, margin: "0 0 20px" }}>
                 SYSTÈME DE VISIBILITÉ 360°
               </h2>
-              <p style={{ fontSize: 16, color: T.graphite, lineHeight: 1.65, maxWidth: 540, margin: "0 auto" }}>
-                Comment <span style={{ color: T.gold, fontWeight: 600 }}>E-Solution</span> construit la présence digitale d&apos;un promoteur.
+              <p style={{ fontSize: 15, color: T.graphite, lineHeight: 1.7 }}>
+                Comment <span style={{ color: T.gold, fontWeight: 600 }}>E-Solution</span> construit la présence digitale d&apos;un promoteur, de A à Z.
               </p>
+              <div style={{ marginTop: 32 }}>
+                <a href="#contact"><Btn kind="dark">Voir comment ça marche</Btn></a>
+              </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+            {/* Right — 3×2 card grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
               {systeme360.map((s, i) => (
                 <div key={s.num}
                   className={`reveal stagger-${(i % 3) + 1}`}
@@ -544,25 +557,28 @@ export default function Home() {
         </section>
 
         {/* ── MÉTHODE ── */}
-        <section id="méthode" style={{ paddingTop: 80, paddingBottom: 80, background: T.off }} className="section-px">
+        <section id="méthode" style={{ paddingTop: 96, paddingBottom: 96, background: T.off }} className="section-px">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal">
-              <Caption style={{ color: T.bronze }}>03 · Méthode</Caption>
-              <h2 style={{ marginTop: 14, fontFamily: "var(--font-display)", fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, maxWidth: 800 }}>
-                De l&apos;audit à la première vente, en quatre étapes.
-              </h2>
+            <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 24 }}>
+              <div>
+                <Caption style={{ color: T.bronze }}>04 · Méthode</Caption>
+                <h2 style={{ marginTop: 14, fontFamily: "var(--font-display)", fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, maxWidth: 600, margin: "14px 0 0" }}>
+                  De l&apos;audit à la première vente, en quatre étapes.
+                </h2>
+              </div>
             </div>
-            <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", position: "relative" }}>
-              <div style={{ position: "absolute", top: 12, left: 60, right: 60, height: 1, background: T.gold, opacity: 0.25 }} aria-hidden="true" />
+            <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: `1px solid ${T.sand}` }}>
               {steps.map(([t, d], i) => (
                 <div key={t}
                   className={`reveal stagger-${i + 1}`}
-                  style={{ paddingRight: 24, paddingBottom: 24 }}>
-                  <div style={{ width: 24, height: 24, background: T.gold, color: T.ink, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }} aria-hidden="true">
+                  style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: "0 48px", padding: "32px 0", borderBottom: `1px solid ${T.sand}`, alignItems: "center" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(48px, 6vw, 80px)", lineHeight: 1, letterSpacing: "-0.05em", color: T.sand }}>
                     0{i + 1}
                   </div>
-                  <h3 style={{ marginTop: 24, fontFamily: "var(--font-display)", fontSize: 20, fontWeight: 700 }}>{t}</h3>
-                  <p style={{ marginTop: 8, fontSize: 13, color: T.graphite, lineHeight: 1.6 }}>{d}</p>
+                  <div>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: T.ink, letterSpacing: "-0.02em" }}>{t}</h3>
+                    <p style={{ marginTop: 8, fontSize: 14, color: T.graphite, lineHeight: 1.65, maxWidth: 520 }}>{d}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -623,28 +639,49 @@ export default function Home() {
         </section>
 
         {/* ── TÉMOIGNAGES ── */}
-        <section id="réalisations" style={{ paddingTop: 80, paddingBottom: 80, background: T.off }} className="section-px">
+        <section id="réalisations" style={{ paddingTop: 96, paddingBottom: 96, background: T.off }} className="section-px">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal">
-              <Caption style={{ color: T.bronze }}>04 · Témoignages</Caption>
-              <h2 style={{ marginTop: 14, fontFamily: "var(--font-display)", fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 40 }}>
-                Ils nous font confiance.
-              </h2>
+            <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 16 }}>
+              <div>
+                <Caption style={{ color: T.bronze }}>05 · Témoignages</Caption>
+                <h2 style={{ marginTop: 14, fontFamily: "var(--font-display)", fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, margin: "14px 0 0" }}>
+                  Ils nous font confiance.
+                </h2>
+              </div>
+              <div aria-label="5 étoiles sur 5" style={{ display: "flex", gap: 3 }}>
+                {Array.from({ length: 5 }).map((_, j) => <span key={j} style={{ color: T.gold, fontSize: 20 }} aria-hidden="true">★</span>)}
+              </div>
             </div>
+
+            {/* Pull-quote — first testimonial full width */}
+            <article className="reveal" style={{ borderTop: `1px solid ${T.sand}`, borderBottom: `1px solid ${T.sand}`, padding: "48px 0 40px", marginBottom: 24 }}>
+              <blockquote style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.5, color: T.graphite, margin: 0, maxWidth: 900 }}>
+                &ldquo;{testimonials[0].quote}&rdquo;
+              </blockquote>
+              <footer style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 16 }}>
+                <div style={{ width: 1, height: 32, background: T.gold }} aria-hidden="true" />
+                <div>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14 }}>{testimonials[0].name}</div>
+                  <div style={{ fontSize: 12, color: T.stone, marginTop: 2 }}>{testimonials[0].role}</div>
+                </div>
+              </footer>
+            </article>
+
+            {/* Two smaller testimonials */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", border: `1px solid ${T.sand}` }}>
-              {testimonials.map((t, i) => (
+              {testimonials.slice(1).map((t, i) => (
                 <article key={t.name}
                   className={`reveal stagger-${i + 1}`}
-                  style={{ padding: 36, borderRight: i < 2 ? `1px solid ${T.sand}` : "none", borderBottom: `1px solid ${T.sand}`, display: "flex", flexDirection: "column", gap: 24 }}>
+                  style={{ padding: 32, borderRight: i === 0 ? `1px solid ${T.sand}` : "none", display: "flex", flexDirection: "column", gap: 20 }}>
                   <div aria-label="5 étoiles sur 5" style={{ display: "flex", gap: 2 }}>
-                    {Array.from({ length: 5 }).map((_, j) => <span key={j} style={{ color: T.gold }} aria-hidden="true">★</span>)}
+                    {Array.from({ length: 5 }).map((_, j) => <span key={j} style={{ color: T.gold, fontSize: 13 }} aria-hidden="true">★</span>)}
                   </div>
-                  <blockquote style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 17, lineHeight: 1.6, color: T.graphite, margin: 0 }}>
+                  <blockquote style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 15, lineHeight: 1.65, color: T.graphite, margin: 0 }}>
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <footer style={{ borderTop: `1px solid ${T.sand}`, paddingTop: 16 }}>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14 }}>{t.name}</div>
-                    <div style={{ fontSize: 12, color: T.stone, marginTop: 2 }}>{t.role}</div>
+                  <footer style={{ borderTop: `1px solid ${T.sand}`, paddingTop: 14, marginTop: "auto" }}>
+                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13 }}>{t.name}</div>
+                    <div style={{ fontSize: 11, color: T.stone, marginTop: 2 }}>{t.role}</div>
                   </footer>
                 </article>
               ))}

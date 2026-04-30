@@ -108,6 +108,9 @@ img { display: block; max-width: 100%; }
   html { scroll-behavior: auto; }
 }
 
+/* ── System 360 layout ── */
+.layout-system360 { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+
 /* ── Funnel layout ── */
 .funnel-grid      { display: grid; grid-template-columns: repeat(5, 1fr); }
 .funnel-connector { display: block; }
@@ -133,9 +136,10 @@ img { display: block; max-width: 100%; }
   .mobile-menu.open { display: flex; flex-direction: column; gap: 0; position: fixed; top: 68px; left: 0; right: 0; background: rgba(248,245,240,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid #D6C5A4; z-index: 40; padding: 8px 0 16px; }
   .mobile-menu.open a { display: block; padding: 14px 24px; font-size: 15px; font-weight: 500; color: #141210; border-bottom: 1px solid rgba(214,197,164,0.3); }
   .mobile-menu.open .mobile-cta { padding: 16px 24px 0; }
-  .funnel-grid      { grid-template-columns: 1fr; }
-  .funnel-connector { display: none; }
-  .funnel-stats     { grid-template-columns: repeat(2, 1fr); }
+  .funnel-grid        { grid-template-columns: 1fr; }
+  .funnel-connector   { display: none; }
+  .funnel-stats       { grid-template-columns: repeat(2, 1fr); }
+  .layout-system360   { grid-template-columns: 1fr; gap: 48px; }
 }
 
 @media (max-width: 480px) {
