@@ -409,50 +409,15 @@ export default function Home() {
         </section>
 
         {/* ── LEADS IMMOBILIERS ── */}
-        <section style={{ paddingTop: 88, paddingBottom: 88, background: T.ink, color: T.off }} className="section-px">
+        <section className="section-px" style={{ paddingTop: 88, paddingBottom: 88, background: T.ink }}>
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-            <div className="reveal" style={{ textAlign: "center", marginBottom: 64 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(52px, 8vw, 108px)", letterSpacing: "-0.04em", lineHeight: 0.93, margin: "0 0 24px" }}>
-                LEADS<br />IMMOBILIERS
-              </h2>
-              <p style={{ fontSize: 16, color: T.stone, lineHeight: 1.65, fontStyle: "italic", fontFamily: "var(--font-body)" }}>
-                Le système qui transforme l&apos;attention en{" "}
-                <span style={{ color: T.gold, fontStyle: "normal", fontWeight: 600 }}>demandes qualifiées.</span>
-              </p>
+            {/* Desktop: horizontal image */}
+            <div className="reveal leads-desktop">
+              <Image src="/leads-desktop.jpg" alt="Leads Immobiliers — système en 5 étapes" width={1920} height={800} style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
-              {funnelSteps.map((s, i) => (
-                <div key={s.num}
-                  className={`reveal stagger-${i + 1}`}
-                  style={{ border: `1px solid ${T.graphite}`, borderRight: i < funnelSteps.length - 1 ? "none" : `1px solid ${T.graphite}`, padding: "28px 22px", position: "relative" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <span style={{ color: T.gold, fontFamily: "monospace", fontSize: 11, letterSpacing: "0.1em" }}>{s.num}</span>
-                    {i < funnelSteps.length - 1 && (
-                      <span style={{ color: T.graphite, fontSize: 18, lineHeight: 1 }} aria-hidden="true">→</span>
-                    )}
-                  </div>
-                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 20, marginTop: 14, color: T.gold, lineHeight: 1.1 }}>{s.title}</h3>
-                  <p style={{ fontSize: 11, color: T.stone, marginTop: 6, lineHeight: 1.5, marginBottom: 20 }}>{s.sub}</p>
-                  <div style={{ height: 1, background: T.graphite, marginBottom: 16 }} aria-hidden="true" />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-                    {s.items.map(item => (
-                      <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <span style={{ color: T.gold, fontSize: 8, flexShrink: 0 }} aria-hidden="true">◆</span>
-                        <span style={{ fontSize: 12, color: T.stone }}>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="reveal" style={{ marginTop: 48, textAlign: "center" }}>
-              <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 18, color: T.stone, lineHeight: 1.6 }}>
-                Une <span style={{ color: T.gold, fontStyle: "normal" }}>visibilité</span> structurée.{" "}
-                Un <span style={{ color: T.gold, fontStyle: "normal" }}>parcours</span> fluide.{" "}
-                Des <span style={{ color: T.gold, fontStyle: "normal" }}>résultats</span> mesurables.
-              </p>
+            {/* Mobile: vertical image */}
+            <div className="reveal leads-mobile">
+              <Image src="/leads-mobile.jpg" alt="Leads Immobiliers — système en 5 étapes" width={900} height={1600} style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
           </div>
         </section>
