@@ -1,29 +1,36 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-editorial",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "E-Solution Realty — Agence Immobilière Premium à Tanger",
+  title: "E-Solution — Agence Marketing Immobilier au Maroc",
   description:
-    "E-Solution Realty est l'agence immobilière de référence à Tanger. Expertise en marketing digital, génération de leads et vente de biens haut de gamme au Maroc.",
+    "E-Solution accompagne promoteurs, agences et investisseurs immobiliers au Maroc. Branding, Meta Ads, leads, shooting, sites web. Résultats mesurables.",
   keywords:
-    "agence immobilière Tanger, immobilier luxe Maroc, marketing immobilier Tanger, E-Solution Realty",
+    "agence marketing immobilier Maroc, leads immobilier, publicité Meta immobilier, branding immobilier Tanger",
   openGraph: {
-    title: "E-Solution Realty — Agence Immobilière Premium à Tanger",
+    title: "E-Solution — Marketing Immobilier · Maroc",
     description:
-      "Expertise immobilière haut de gamme à Tanger, Maroc. Résultats mesurables, approche exclusive.",
+      "Branding, contenu, publicité digitale et sites web pour l'immobilier au Maroc.",
     type: "website",
     locale: "fr_MA",
   },
@@ -35,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="bg-[#0a0a0a] text-white antialiased">{children}</body>
+    <html lang="fr" className={`${spaceGrotesk.variable} ${inter.variable} ${fraunces.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
