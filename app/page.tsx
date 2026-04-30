@@ -499,20 +499,40 @@ export default function Home() {
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
             <div className="reveal" style={{ textAlign: "center", marginBottom: 56 }}>
               <Caption style={{ color: T.gold, marginBottom: 16, display: "block" }}>Notre expertise</Caption>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(32px, 4.5vw, 60px)", letterSpacing: "-0.03em", lineHeight: 1.1, margin: 0 }}>
-                Nous rendons votre projet<br />
-                <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", color: T.gold, fontWeight: 400 }}>plus visible en ligne.</span>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(28px, 4vw, 54px)", letterSpacing: "-0.03em", lineHeight: 1.1, margin: "0 0 20px", maxWidth: 780, marginLeft: "auto", marginRight: "auto" }}>
+                Une visibilité digitale qui transforme la perception de vos projets.
               </h2>
+              <p style={{ fontSize: 16, color: T.stone, lineHeight: 1.7, maxWidth: 600, margin: "0 auto" }}>
+                De la simple présence en ligne à une stratégie complète&nbsp;: branding, contenu, landing page, Meta Ads et leads qualifiés.
+              </p>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-              <div className="reveal stagger-1" style={{ position: "relative" }}>
+              <div className="reveal stagger-1">
                 <Image src="/avant.jpg" alt="Avant — sans E-Solution" width={900} height={1125} style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
-              <div className="reveal stagger-2" style={{ position: "relative" }}>
+              <div className="reveal stagger-2">
                 <Image src="/apres.jpg" alt="Après — avec E-Solution" width={900} height={1125} style={{ width: "100%", height: "auto", display: "block" }} />
               </div>
             </div>
+
+            <div className="reveal" style={{ textAlign: "center", marginTop: 48 }}>
+              <a href="#contact"><Btn kind="primary">Demander un audit digital</Btn></a>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CE QUE NOUS OPTIMISONS ── */}
+        <section style={{ paddingTop: 40, paddingBottom: 40, background: T.graphite }} className="section-px">
+          <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, justifyContent: "center" }}>
+            <Caption style={{ color: T.gold, marginRight: 8 }}>Ce que nous optimisons</Caption>
+            <div style={{ width: 1, height: 16, background: T.stone, flexShrink: 0 }} aria-hidden="true" />
+            {["Image de marque", "Présentation du projet", "Contenu digital", "Campagnes Ads", "Conversion WhatsApp", "Suivi des leads"].map((item, i, arr) => (
+              <div key={item} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <span style={{ fontSize: 13, color: T.off, fontFamily: "var(--font-display)", fontWeight: 500 }}>{item}</span>
+                {i < arr.length - 1 && <span style={{ color: T.stone, fontSize: 10 }} aria-hidden="true">•</span>}
+              </div>
+            ))}
           </div>
         </section>
 
