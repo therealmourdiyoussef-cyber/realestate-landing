@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Epilogue } from "next/font/google";
 import "./globals.css";
 
@@ -14,6 +14,12 @@ const epilogue = Epilogue({
   weight: ["300", "400", "500"],
   style: ["normal", "italic"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "E-Solution — Agence Marketing Immobilier au Maroc",

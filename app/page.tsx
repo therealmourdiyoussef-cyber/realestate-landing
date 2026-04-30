@@ -387,7 +387,7 @@ export default function Home() {
         </section>
 
         {/* ── SERVICES ── */}
-        <section id="services" style={{ background: T.ink, color: T.off, paddingTop: 96, paddingBottom: 96 }} className="section-px">
+        <section id="services" style={{ background: T.ink, color: T.off }} className="section-px py-section">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
             <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
               <div>
@@ -399,16 +399,13 @@ export default function Home() {
               <a href="#contact"><Btn kind="primary">Discuter de votre projet</Btn></a>
             </div>
             {/* Editorial list — 2 columns of 4 rows */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(480px, 1fr))", borderTop: `1px solid ${T.graphite}` }}>
+            <div className="services-list" style={{ borderColor: T.graphite }}>
               {services.map(([n, t, d], i) => (
                 <div key={n}
-                  className={`reveal stagger-${(i % 4) + 1}`}
+                  className={`services-row reveal stagger-${(i % 4) + 1}`}
                   style={{
-                    display: "grid", gridTemplateColumns: "44px 1fr 20px", gap: "0 20px",
-                    padding: "22px 0", borderBottom: `1px solid ${T.graphite}`,
-                    paddingRight: i % 2 === 0 ? 40 : 0, paddingLeft: i % 2 === 1 ? 40 : 0,
+                    borderBottom: `1px solid ${T.graphite}`,
                     borderRight: i % 2 === 0 ? `1px solid ${T.graphite}` : "none",
-                    alignItems: "start", transition: "opacity 0.55s cubic-bezier(0.16,1,0.3,1)",
                   }}>
                   <span style={{ color: T.gold, fontFamily: "monospace", fontSize: 11, letterSpacing: "0.08em", paddingTop: 3 }}>{n}</span>
                   <div>
@@ -423,8 +420,8 @@ export default function Home() {
         </section>
 
         {/* ── SYSTÈME 360° ── */}
-        <section style={{ paddingTop: 120, paddingBottom: 120, background: T.off }} className="section-px">
-          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }} className="layout-system360">
+        <section style={{ background: T.off }} className="section-px py-section-lg">
+          <div style={{ maxWidth: 1280, margin: "0 auto" }} className="layout-system360">
             {/* Sticky left panel */}
             <div className="reveal" style={{ position: "sticky", top: 96 }}>
               <div style={{ color: T.gold, fontSize: 24, marginBottom: 12 }} aria-hidden="true">✦</div>
@@ -557,7 +554,7 @@ export default function Home() {
         </section>
 
         {/* ── MÉTHODE ── */}
-        <section id="méthode" style={{ paddingTop: 96, paddingBottom: 96, background: T.off }} className="section-px">
+        <section id="méthode" style={{ background: T.off }} className="section-px py-section">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
             <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 24 }}>
               <div>
@@ -567,11 +564,11 @@ export default function Home() {
                 </h2>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: `1px solid ${T.sand}` }}>
+            <div style={{ borderTop: `1px solid ${T.sand}` }}>
               {steps.map(([t, d], i) => (
                 <div key={t}
-                  className={`reveal stagger-${i + 1}`}
-                  style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: "0 48px", padding: "32px 0", borderBottom: `1px solid ${T.sand}`, alignItems: "center" }}>
+                  className={`method-row reveal stagger-${i + 1}`}
+                  style={{ borderBottom: `1px solid ${T.sand}` }}>
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(48px, 6vw, 80px)", lineHeight: 1, letterSpacing: "-0.05em", color: T.sand }}>
                     0{i + 1}
                   </div>
@@ -639,7 +636,7 @@ export default function Home() {
         </section>
 
         {/* ── TÉMOIGNAGES ── */}
-        <section id="réalisations" style={{ paddingTop: 96, paddingBottom: 96, background: T.off }} className="section-px">
+        <section id="réalisations" style={{ background: T.off }} className="section-px py-section">
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
             <div className="reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 16 }}>
               <div>
@@ -791,8 +788,8 @@ export default function Home() {
                             aria-invalid={!!formErrors[f.id]}
                             aria-describedby={formErrors[f.id] ? `${f.id}-error` : undefined}
                             style={{
-                              width: "100%", padding: "10px 0", background: "transparent",
-                              color: T.off, fontSize: 14, border: "none", outline: "none",
+                              width: "100%", padding: "13px 0", minHeight: 44, background: "transparent",
+                              color: T.off, fontSize: 16, border: "none", outline: "none",
                               borderBottom: `1px solid ${formErrors[f.id] ? "#e05252" : T.graphite}`,
                               transition: "border-color 0.2s",
                             }}
